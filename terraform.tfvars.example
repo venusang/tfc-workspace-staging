@@ -1,0 +1,8 @@
+organization   = "your-org-name"
+workspace_name = "example-workspace"
+# project_name = "Your-Project"  # Optional: uncomment to use
+
+# Optional: Connect workspace to GitHub repo
+# vcs_repo_identifier = "your-username/your-repo"
+# vcs_oauth_token_id  = "ot-xxxxx"  # Get from TFC UI or oauth-lookup.tf
+# vcs_branch          = "main"      # Optional: defaults to repo default branch
