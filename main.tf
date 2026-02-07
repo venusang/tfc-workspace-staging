@@ -16,10 +16,13 @@ resource "tfe_workspace" "this" {
   auto_apply     = false
   queue_all_runs = true
 
-  # Connect to GitHub repository
-  vcs_repo {
-    identifier     = var.vcs_repo_identifier # e.g., "hashicorp/my-repo"
-    oauth_token_id = var.vcs_oauth_token_id
-    branch         = var.vcs_branch # Optional: defaults to the repo's default branch
+  # Connect to GitHub repository (only if vcs_repo_identifier is provided)
+  dynamic "vcs_repo" {
+    for_each = var.vcs_repo_identifier != null && var.vcs_oauth_token_id != null ? [1] : []
+    content {
+      identifier     = var.vcs_repo_identifier # e.g., "hashicorp/my-repo"
+      oauth_token_id = var.vcs_oauth_token_id
+      branch         = var.vcs_branch # Optional: defaults to the repo's default branch
+    }
   }
 }
